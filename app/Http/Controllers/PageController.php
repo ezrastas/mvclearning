@@ -26,4 +26,9 @@ class PageController extends Controller{
   {
       return view('pages.delete');
   }
+
+  public function mongo()
+  {
+      return view('testmongo');
+  }
 }
