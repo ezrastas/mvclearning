@@ -13,7 +13,7 @@
     return view('welcome');
 });*/
 
-Route::get('/', 'PageController@welcome');
+Route::get('/', 'PageController@index');
 Route::get('/create', 'PageController@create');
 Route::get('/read', 'PageController@read');
 Route::get('/update', 'PageController@update');

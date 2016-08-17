@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersCrudTable extends Migration
+class Crud extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateUsersCrudTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_crud', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('phone_number')->unique();
+        Schema::create('crud', function (Blueprint $table) {
+              $table->increments('id');
+              $table->string('name');
+              $table->string('phone_number')->unique();
+          
         });
     }
 
@@ -26,6 +27,6 @@ class CreateUsersCrudTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users_crud');
+        Schema::drop('crud');
     }
 }

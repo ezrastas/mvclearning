@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers;
 
+use App\User;
+
 class PageController extends Controller{
 
-  public function welcome()
+  public function index()
   {
-      return view('welcome');
+      return view('index');
   }
 
   public function create()
@@ -29,6 +31,15 @@ class PageController extends Controller{
 
   public function mongo()
   {
-      return view('testmongo');
+    $userss=User::all();
+    foreach($userss as $row){
+
+      echo $row->name;
+}
+
   }
+
+
+
+
 }
