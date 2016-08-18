@@ -35,7 +35,7 @@
                         echo '<td>'. $row->email . '</td>';
                         echo '<td>'. '<a href="read?id='.$row['id'].'" class="btnRead">Read</a>' .
                          '<a href="#" class="btnUpdate">Update</a>' .
-                         '<a href="#" class="btnDelete">Delete</a>' . '</td>';
+                         '<a href="delete?id='.$row['id'].'&del=0" class="btnDelete">Delete</a>' . '</td>';
                         echo '</tr>';
                     }
                   ?>

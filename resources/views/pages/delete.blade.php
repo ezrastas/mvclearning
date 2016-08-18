@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
+<?php
+use App\User;
+use App\Http\Requests;
+
+print_r($_GET);
+print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
+?>
+<?php
+
+    if ( !empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+    if (!empty($_GET['del'])){
+      $userss=User::destroy($id);
+      header('Location:http://localhost:8888/'); exit();
+ }?>
+
+
+
     <head>
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 86px;
-            }
-        </style>
+        <title>Users CRUD: Delete</title>
+            <meta charset="utf-8">
+            <link href="css\style.css" rel="stylesheet" type="text/css">
+            <link href="css\bootstrap.min.css" rel="stylesheet" type="text/css">
+            <script src="js\bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Here we'll delete new user's info.</div>
-            </div>
-        </div>
-    </body>
+      <div class="container">
+
+                <div class="span10 offset1">
+                    <div class="row">
+                        <h3>Delete a Customer</h3>
+                    </div>
+                      <h3 class="deleteAlert">Are you sure to delete ?</h3>
+                    </br>
+                          <a class="btnYes" href="delete?id=<?php echo $id;?>&del=1">yeap</a>
+                          <a class="btn" href="/">No</a>
+                        </div>
+                </div>
+    </div> <!-- /container -->
+  </body>
 </html>
