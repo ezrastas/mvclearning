@@ -16,7 +16,7 @@
               <h3>Users CRUD </h3>
           </div>
           <div class="row">
-            <a href="/create" class="btnCreate">Create a new profile</a>
+            <a href="create" class="btnCreate">Create a new profile</a>
               <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
@@ -33,7 +33,7 @@
                         echo '<tr>';
                         echo '<td>'. $row->name . '</td>';
                         echo '<td>'. $row->email . '</td>';
-                        echo '<td>'. '<a href="#" class="btnRead">Read</a>' .
+                        echo '<td>'. '<a href="read?id='.$row['id'].'" class="btnRead">Read</a>' .
                          '<a href="#" class="btnUpdate">Update</a>' .
                          '<a href="#" class="btnDelete">Delete</a>' . '</td>';
                         echo '</tr>';

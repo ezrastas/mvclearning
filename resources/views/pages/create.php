@@ -19,7 +19,7 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
       <div class="container">
                     <div class="row">
                         <h3>Create a Users profile</h3>
-
+                          <hr>
                     <form class="form-horizontal" action="/create" formmethod="get">
                         <label class="control-label"><h4>Name</h4></label>
                           <div class="controls">
@@ -33,6 +33,7 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                           <div class="controls">
                             <input name="password" type="text"  placeholder="password" value="<?php echo !empty($password)?$password:'';?>">
                           </div>
+                          <hr>
                         </br>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Create</button>

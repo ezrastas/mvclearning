@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<?php
+use App\User;
+use App\Http\Requests;
+
+print_r($_GET);
+print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
+?>
     <head>
         <title>Users CRUD: Create</title>
             <meta charset="utf-8">
@@ -8,49 +15,34 @@
             <script src="js\bootstrap.min.js"></script>
     </head>
     <body>
+<?php $id = null;
+    if ( !empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+    if ( null==$id ) {
+        header("Location: index.php");
+    } else {
+         $userss=User::find($id);
+    }?>
       <div class="container">
-          <div class="row">
-              <h3>Users CRUD: Create </h3>
-          </div>
-      <div class="row">
-          <table class="table table-striped">
-            <tr>
-              <td><h4>Name</h4></td>
-              <td><p><input required maxlength="20" size="40" name="name" value="<?php $name; ?>"></p></td>
-            </tr>
-            <tr>
-              <td><h4>Email</h4></td>
-              <td><p><input required maxlength="25" size="40" name="email" value="<? $email; ?>"></p></td>
-            </tr>
-            <tr>
-              <td><h4>Password</h4></td>
-              <td><p><input required maxlength="20" size="40" name="password" value="<?php $password; ?>"></p></td>
-            </tr>
-          </table>
-          <button class="btnCreate" onClick="
-
-          <?php
-          use App\User;
-
-
-
-          if ( empty($_POST)) {
-
-                 $name = $_POST['name'];
-                 $email = $_POST['email'];
-                 $mobile = $_POST['password'];
-
-              $user = array(
-        "name" => $name,
-        "email" => $email,
-        "password"=> $password
-        );
-            /*$userss->insert($user);*/
-
-                          echo $user;
-}
-
-              ?>" >Create a new profile</button>
-            </div>
+          <h3>Create a Users profile</h3>
+                <hr>
+              <table>
+                  <tr>
+                      <th> <h4>Name:</h4></th>
+                      <th> <h4><?php echo $userss->name;?></h4></th>
+                  </tr>
+                  <tr>
+                      <td> <h4>Email Address: &nbsp &nbsp</h4></td>
+                      <td> <h4><?php echo $userss->email;?></h4></td>
+                  </tr>
+                  <tr>
+                      <td> <h4>Password:</h4></td>
+                      <td> <h4><?php echo $userss->password;?></h4></td>
+                  </tr>
+              </table>
+                  <hr>
+                      <a class="btn" href="/">Back</a>
+      </div>
     </body>
 </html>
