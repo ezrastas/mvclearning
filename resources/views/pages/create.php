@@ -62,7 +62,8 @@ if ( !empty($_GET)) {
               );
         $userss = new User;
         $userss->create($user);
-        header('Location:http://localhost:8888/'); exit(); //перенаправляет на индекс-страницу
+
+        header('Location:http://localhost:8888/');  //перенаправляет на индекс-страницу
       }
       else{
       header('Location:' . $_SERVER['HTTP_HOST'] . '/create');// если не заполнил поля, не перенаправляет, а заставляет заполнить

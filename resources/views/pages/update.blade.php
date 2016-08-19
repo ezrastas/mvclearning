@@ -7,31 +7,73 @@ use App\Http\Requests;
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
+
+<?php $id = null;
+    if ( !empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+    else { header("Location: index.php");
+    }
+  $userss=User::find($id);
+  $name=$email=$password=0;
+    ?>
+
     <head>
-        <title>Users CRUD: Delete</title>
+        <title>Users CRUD: Update</title>
             <meta charset="utf-8">
             <link href="css\style.css" rel="stylesheet" type="text/css">
             <link href="css\bootstrap.min.css" rel="stylesheet" type="text/css">
             <script src="js\bootstrap.min.js"></script>
     </head>
     <body>
-      <form class="form-horizontal" action="delete.php" method="post">
-                      <p class="alert alert-error">Are you sure to delete ?</p>
+
+      <div class="container">
+                    <div class="row">
+                        <h3>Update a Users profile</h3>
+                          <hr>
+                    <form class="form-horizontal" formmethod="get">
+                        <label class="control-label"><h4>Name</h4></label>
+                          <div class="controls">
+                            <input name="name" type="text"  placeholder="<?php echo $userss->name;?>" value="<?php echo !empty($name)?$name:'';?>">
+                          </div>
+                        <label class="control-label" ><h4>Email Address</h4></label>
+                          <div class="controls">
+                            <input name="email" type="text" placeholder="<?php echo $userss->email;?>" value="<?php echo !empty($email)?$email:'';?>">
+                          </div>
+                        <label class="control-label"><h4>Password</h4></label>
+                          <div class="controls">
+                            <input name="password" type="text"  placeholder="<?php echo $userss->password;?>" value="<?php echo !empty($password)?$password:'';?>">
+                              <input name="id" value="<?php echo $id?>" style="width:0px;border:0px;">
+                          </div>
+                          <hr>
+                        </br>
                       <div class="form-actions">
-                          <button type="submit" class="btn btn-danger">Yes</button>
-                          <a class="btn" href="/">No</a>
+                          <button type="submit" class="btn btn-success">Create</button>
+                          <a class="btn" href="index.php">Back</a>
                         </div>
                     </form>
+                </div>
 
-        <?php $id = null;
-            if ( !empty($_GET['id'])) {
-                $id = $_REQUEST['id'];
-            }
-            if ( null==$id ) {
-                header("Location: index.php");
-            } else {
-                 $userss=User::destroy($id);
-                 header("Location: /");
-            }?>
+      <?php
+      if ( !empty($_GET['name']) || !empty($_GET['email']) || !empty($_GET['password'])) {
+      if ( !empty($_GET['name'])) {
+      $name = $_GET['name'];
+      $userss->name = $name;
+    }
+      if ( !empty($_GET['email'])) {
+      $email = $_GET['email'];
+      $userss->email = $email;
+    }
+      if ( !empty($_GET['password'])) {
+      $password = $_GET['password'];
+      $userss->password = $password;
+    }
+                    $userss->save();
+
+
+                    header('Location:http://localhost:8888/'); exit();
+}
+              ?>
+        </div>
     </body>
-  </html>
+</html>
