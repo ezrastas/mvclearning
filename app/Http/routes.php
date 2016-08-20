@@ -15,7 +15,17 @@
 
 Route::get('/', 'PageController@index');
 Route::get('/create', 'PageController@create');
-Route::get('/read', 'PageController@read');
-Route::get('/update', 'PageController@update');
-Route::get('/delete', 'PageController@delete');
+Route::get('read', ['as' => 'read','uses' => 'PageController@read', function ($id) {
+    return $id;
+}]);
+Route::get('update', ['as' => 'update','uses' => 'PageController@update', function ($id) {
+    return $id;
+}]);
+Route::get('delete', ['as' => 'delete','uses' => 'PageController@delete', function ($id) {
+    return $id;
+}]);
+
+
+
+
 Route::get('/mongo', 'PageController@mongo');

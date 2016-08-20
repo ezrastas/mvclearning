@@ -4,8 +4,8 @@
 use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-$urlIndex=action('PageController@index');
-$urlCreate=action('PageController@create');
+$urlIndex = action('PageController@index');
+$urlCreate = action('PageController@create');
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
