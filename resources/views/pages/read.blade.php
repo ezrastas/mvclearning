@@ -3,6 +3,9 @@
 <?php
 use App\User;
 use App\Http\Requests;
+use Illuminate\Http\Request;
+
+$urlIndex=action('PageController@index');
 
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
@@ -17,10 +20,10 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
     <body>
 <?php $id = null;
     if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+        $id = Request('id');
     }
     if ( null==$id ) {
-        header("Location: index.php");
+      return redirect($urlIndex)->send();
     } else {
          $userss=User::find($id);
     }?>
@@ -42,7 +45,7 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                   </tr>
               </table>
                   <hr>
-                      <a class="btn" href="/">Back</a>
+                      <a class="btn" href="<?php echo $urlIndex;?>">Back</a>
       </div>
     </body>
 </html>

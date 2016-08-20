@@ -4,20 +4,20 @@
 use App\User;
 use App\Http\Requests;
 
+$urlIndex=action('PageController@index');
+
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
-
 <?php $id = null;
     if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+        $id = Request('id');
     }
-    else { header("Location: index.php");
+    else { return redirect($urlIndex)->send();
     }
   $userss=User::find($id);
   $name=$email=$password=0;
     ?>
-
     <head>
         <title>Users CRUD: Update</title>
             <meta charset="utf-8">
@@ -26,7 +26,6 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
             <script src="js\bootstrap.min.js"></script>
     </head>
     <body>
-
       <div class="container">
                     <div class="row">
                         <h3>Update a Users profile</h3>
@@ -48,8 +47,8 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                           <hr>
                         </br>
                       <div class="form-actions">
-                          <button type="submit" class="btn btn-success">Create</button>
-                          <a class="btn" href="index.php">Back</a>
+                          <button type="submit" class="btn btn-success">Update</button>
+                          <a class="btn" href="<?php echo $urlIndex;?>">Back</a>
                         </div>
                     </form>
                 </div>
@@ -69,11 +68,9 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
       $userss->password = $password;
     }
                     $userss->save();
-
-
-                    header('Location:http://localhost:8888/'); exit();
+                    return redirect($urlIndex)->send();
 }
-              ?>
+      ?>
         </div>
     </body>
 </html>

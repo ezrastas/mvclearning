@@ -4,17 +4,20 @@
 use App\User;
 use App\Http\Requests;
 
+$urlIndex=action('PageController@index');
+$urlDelete=action('PageController@delete');
+
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
 <?php
 
     if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+        $id = Request('id');
     }
     if (!empty($_GET['del'])){
       $userss=User::destroy($id);
-      header('Location:http://localhost:8888/'); exit();
+      return redirect($urlIndex)->send();
  }?>
 
 
@@ -35,8 +38,8 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                     </div>
                       <h3 class="deleteAlert">Are you sure to delete ?</h3>
                     </br>
-                          <a class="btnYes" href="delete?id=<?php echo $id;?>&del=1">yeap</a>
-                          <a class="btn" href="/">No</a>
+                          <a class="btnYes" href="<?php echo $urlDelete;?>?id=<?php echo $id;?>&del=1">yeap</a>
+                          <a class="btn" href="<?php echo $urlIndex;?>">No</a>
                         </div>
                 </div>
     </div> <!-- /container -->

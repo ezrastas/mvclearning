@@ -3,7 +3,9 @@
 <?php
 use App\User;
 use App\Http\Requests;
-
+use Illuminate\Http\Request;
+$urlIndex=action('PageController@index');
+$urlCreate=action('PageController@create');
 print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
@@ -20,7 +22,7 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                     <div class="row">
                         <h3>Create a Users profile</h3>
                           <hr>
-                    <form class="form-horizontal" action="/create" formmethod="get">
+                    <form class="form-horizontal" action="<?php echo $urlCreate;?>" formmethod="get">
                         <label class="control-label"><h4>Name</h4></label>
                           <div class="controls">
                             <input name="name" type="text"  placeholder="Name" value="<?php echo !empty($name)?$name:'';?>">
@@ -37,7 +39,7 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
                         </br>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Create</button>
-                          <a class="btn" href="index.php">Back</a>
+                          <a class="btn" href="<?php echo $urlIndex;?>">Back</a>
                         </div>
                     </form>
                 </div>
@@ -45,9 +47,13 @@ print_r($_SERVER['REQUEST_URI']); // данные, необходимые для
 <?php
 $Error = false;
 if ( !empty($_GET)) {
+  /*
     $name = $_GET['name'];
     $email = $_GET['email'];
-    $password = $_GET['password'];
+    $password = $_GET['password'];   */
+    $name = Request('name'); //НЕ УВЕРЕН В НЕОБХОДИМОСТИ ДАННЫХ ИЗМЕНЕНИЙ
+    $email = Request('email');
+    $password = Request('password');
 
         $valid = true;
         if (empty($name) || empty($email) || empty($password)) {
@@ -61,12 +67,13 @@ if ( !empty($_GET)) {
               "password"=> $password
               );
         $userss = new User;
-        $userss->create($user);
+  $userss->create($user);
 
-        header('Location:http://localhost:8888/');  //перенаправляет на индекс-страницу
+        return redirect($urlIndex)->send();//перенаправляет на индекс-страницу
+
       }
       else{
-      header('Location:' . $_SERVER['HTTP_HOST'] . '/create');// если не заполнил поля, не перенаправляет, а заставляет заполнить
+      return redirect($urlCreate)->send();// если не заполнил поля, не перенаправляет, а заставляет заполнить
       }
 }
 ?>
