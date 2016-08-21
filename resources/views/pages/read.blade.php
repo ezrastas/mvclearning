@@ -11,7 +11,7 @@ print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
     <head>
-        <title>Users CRUD: Create</title>
+        <title>Users CRUD: Read</title>
             <meta charset="utf-8">
             <link href="css\style.css" rel="stylesheet" type="text/css">
             <link href="css\bootstrap.min.css" rel="stylesheet" type="text/css">

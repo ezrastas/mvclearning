@@ -34,15 +34,13 @@
                           use App\User;
                         $userss=User::all();
                         foreach($userss as $row){
-                            //$RouteRead = route('show', 'read?id='.$row->id);
-                           $RouteRead = action('PageController@show', 'read?id='. $row->id );
+                           $RouteRead = route('user.show', 'read?id='.$row->id);
                            $RouteUpdate = route('user.update','update?id='.$row->id);
-                          $RouteDelete = action('PageController@destroy', ['id' => 'delete?id='.$row->id.'&del=0']);
-                          //$RouteUpdate = action('PageController@update','update');
+                          //$RouteDelete = action('PageController@destroy', 'delete?id='. $row->id .'&del=0');
+                          $RouteDelete = route('user.destroy','delete?id='. $row->id .'&del=0');
                             echo '<tr>';
                             echo '<td>'. $row->name . '</td>';
                             echo '<td>'. $row->email . '</td>';
-                            //echo '<td>'. '<a href="'. $urlRead.'?id='.$row['id'].'" class="btnRead">Read</a>' .
                             echo '<td>'. '<a href="'. $RouteRead .'" class="btnRead">Read</a>' .
                              '<a href="'. $RouteUpdate .'" class="btnUpdate">Update</a>' .
                              '<a href="'. $RouteDelete .'" class="btnDelete">Delete</a>' . '</td>';

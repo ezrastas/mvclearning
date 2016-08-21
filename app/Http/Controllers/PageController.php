@@ -14,10 +14,20 @@ class PageController extends Controller{
       return view('pages.create');
   }
 
-  public function show()
+  public function show($id)
   {
-      return view('pages.read');
+      if($id == 'update'){
+      return view('pages.update');}
+      else{
+        if($id == 'delete'){
+          return view('pages.delete');}
+          else{return view('pages.read');
+    }}
   }
+
+  public function read($id){
+    return view('pages.read');
+}
 
   public function update()
   {
@@ -26,6 +36,7 @@ class PageController extends Controller{
 
   public function destroy()
   {
+
       return view('pages.delete');
   }
 
