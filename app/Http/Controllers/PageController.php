@@ -14,7 +14,7 @@ class PageController extends Controller{
       return view('pages.create');
   }
 
-  public function read()
+  public function show()
   {
       return view('pages.read');
   }
@@ -24,7 +24,7 @@ class PageController extends Controller{
       return view('pages.update');
   }
 
-  public function delete()
+  public function destroy()
   {
       return view('pages.delete');
   }

@@ -7,9 +7,9 @@
             <link href="css\bootstrap.min.css" rel="stylesheet" type="text/css">
             <script src="js\bootstrap.min.js"></script>
 <?php $urlCreate=action('PageController@create');
-      $urlRead=action('PageController@read');
-      $urlUpdate=action('PageController@update');
-      $urlDelete=action('PageController@delete');
+    //  $urlRead=action('PageController@read');
+    //  $urlUpdate=action('PageController@update');
+    //  $urlDelete=action('PageController@delete');
 ?>
 
 
@@ -34,9 +34,11 @@
                           use App\User;
                         $userss=User::all();
                         foreach($userss as $row){
-                            $RouteRead = route('read', ['id' => $row->id]);
-                            $RouteUpdate = route('update', ['id' => $row->id]);
-                            $RouteDelete = route('delete', ['id' => $row->id]);
+                            //$RouteRead = route('show', 'read?id='.$row->id);
+                           $RouteRead = action('PageController@show', 'read?id='. $row->id );
+                           $RouteUpdate = route('user.update','update?id='.$row->id);
+                          $RouteDelete = action('PageController@destroy', ['id' => 'delete?id='.$row->id.'&del=0']);
+                          //$RouteUpdate = action('PageController@update','update');
                             echo '<tr>';
                             echo '<td>'. $row->name . '</td>';
                             echo '<td>'. $row->email . '</td>';
@@ -44,6 +46,7 @@
                             echo '<td>'. '<a href="'. $RouteRead .'" class="btnRead">Read</a>' .
                              '<a href="'. $RouteUpdate .'" class="btnUpdate">Update</a>' .
                              '<a href="'. $RouteDelete .'" class="btnDelete">Delete</a>' . '</td>';
+
                             echo '</tr>';
                         }
                       ?>
