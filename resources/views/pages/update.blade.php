@@ -6,7 +6,7 @@ use App\Http\Requests;
 
 $urlIndex=action('PageController@index');
 
-print_r($_GET);
+//print_r($_GET);
 print_r($_SERVER['REQUEST_URI']); // данные, необходимые для тестирования страницы.
 ?>
 <?php $id = null;
